@@ -1,0 +1,84 @@
+/* 
+  Only writing !important because of the need to overwrite materialize css 
+  Never doing that with my own CSS
+*/
+* {
+  font-family: 'Fira Sans', sans-serif;
+}
+.container-fluid--no-padding{
+  padding: 0!important;
+}
+nav .brand-logo, icon-fingerprint {
+  font-size:20px
+}
+nav .nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav .nav-wrapper .nav-wrapper__logo {
+  width:20%;
+  height:100%
+}
+nav a:hover {
+  /* color: #ffab40; */
+  color: #f0e7c6;
+}
+.btn--blue:hover {
+  color:#e5d59c;
+}
+.column--no-pading {
+  padding:0!important;  
+}
+.column nav {
+  padding:0px 15px;
+  background-color: #7289da;
+}
+.btn--blue, .btn--blue:hover {
+  background-color: #7289da;
+}
+div.row--align-center {
+  display:flex;
+  justify-content: center;
+}
+div.input-field--with-bottom-margin {
+  margin-bottom:30px;
+}
+div.input-field--no-margin-top {
+  margin-top:0px!important;
+}
+[type="radio"]:checked+span:after {
+  background-color: #7289da;
+  border: 2px solid #7289da;
+}
+
+.color--blue {
+  color:#7289da!important;
+}
+.border-bottom--blue {
+  border-bottom: 2px solid #7289da!important;
+  box-shadow: 0 1px 0 0 #7289da;
+}
+input[type=email]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 2px solid #7289da!important;
+  box-shadow: 0 1px 0 0 #7289da;
+}
+input[type=tel]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 2px solid #7289da!important;
+  box-shadow: 0 1px 0 0 #7289da;
+}
+
+[type="checkbox"]:checked+span:not(.lever):before {
+  border-right: 2px solid #7289da;
+  border-bottom: 2px solid #7289da;
+}
+.div--display-none {
+  display:none;
+}
+.helper-text.helper-text--invalid {
+  color:red;
+}
+
+.helper-text.helper-text--display-none {
+  display:none;
+}
