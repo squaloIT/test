@@ -1,16 +1,17 @@
 window.onload = () => {
-  alert("sdasda")
   const toggleDisabledIfCheckedChb = () => {
     document.getElementById("terms-and-conditions").addEventListener("change", function () {
       if (document.getElementById("terms-and-conditions").checked) {
-        document.querySelector("button[type='submit']").classList.remove("disabled")
+        document.querySelector("button[type='button']").classList.remove("disabled")
       } else {
-        document.querySelector("button[type='submit']").classList.add("disabled")
+        document.querySelector("button[type='button']").classList.add("disabled")
       }
     })
   }
 
   const toggleInputElementsAccordingToNav = (a) => {
+    document.querySelectorAll(".helper-text").forEach(el => el.classList.add("helper-text--display-none"));
+
     if (a.href.indexOf("mobile") != -1) {
       document.getElementById("mobile").classList.remove("div--display-none")
       document.getElementById("email").classList.add("div--display-none")
@@ -29,20 +30,96 @@ window.onload = () => {
     }
   }
 
-  function checkElementWithRegularExpression(element, regEx) {
+  const checkFormValidity = () => {
+    const checkElementWithRegularExpression = (element, regEx) => {
+      const val = element.value;
+      const helperText = element.nextElementSibling;
 
-    const val = element.value;
-
-    if (!regEx.test(val)) {
-      imePrezimeElement.style.border = "1px solid red";
-      return false;
-    } else {
-      imePrezimeElement.style.border = "1px solid #CCC";
-      return imePrezimeVal; //Vracamo vrednost promenljive pozivaocu
+      if (!regEx.test(val)) {
+        helperText.classList.remove("helper-text--display-none");
+        return false;
+      } else {
+        helperText.classList.add("helper-text--display-none");
+        return val;
+      }
     }
+
+    const checkIsCurrencySelected = () => {
+      let value = null;
+
+      const elements = document.getElementsByName('currency-radio-group');
+      elements.forEach(r => {
+        if (r.checked) {
+          value = r.value;
+        }
+      });
+
+      return !!value;
+    }
+
+    const isEmailValid = () => {
+      return checkElementWithRegularExpression(
+        document.getElementById("tbEmail"),
+        /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+      )
+    }
+
+    const isTelValid = () => {
+      return checkElementWithRegularExpression(
+        document.getElementById("tbTelephone"),
+        /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g
+      )
+    }
+
+    const toggledElementsValid = document.getElementById("tbEmail").classList.contains('div--display-none') ?
+      isTelValid() : isEmailValid()
+
+    if (!toggledElementsValid)
+      return false
+
+    if (!checkIsCurrencySelected())
+      return false;
+
+    return true;
+  }
+
+  const hideSpinner = () => {
+    let spinner = document.querySelector("#pms-global-spinner");
+    if (spinner) {
+      spinner.style.display = 'none';
+    }
+  }
+
+  const showSpinner = () => {
+    const checkIsDisplayed = () => {
+      let spinner = document.querySelector("#pms-global-spinner");
+      if (spinner) {
+        return spinner.style.display == 'flex';
+      }
+      return false;
+    }
+
+    let spinner = document.querySelector("#pms-global-spinner");
+    if (spinner) {
+      spinner.style.display = checkIsDisplayed() ? 'none' : 'flex';
+    }
+  }
+
+  function sendDataIfValid() {
+    showSpinner();
+    setTimeout(() => { //JUST TO SIMULATE SLOWER NETWORK REQUEST :)
+      if (checkFormValidity()) {
+        alert("SEND ")
+        hideSpinner();
+      } else {
+        hideSpinner();
+      }
+    }, 500)
+
   }
 
   getNavLinksAndAddEvent();
   toggleDisabledIfCheckedChb();
-  // toggleInputElementsAccordingToNav();
+
+  document.getElementById("btnRegister").addEventListener('click', sendDataIfValid);
 }
