@@ -99,7 +99,6 @@ window.onload = () => {
   }
 
   const isEmailInvisible = () => {
-    console.log(document.getElementById("tbEmail").parentElement)
     return document.getElementById("tbEmail").parentElement.classList.contains('div--display-none')
   }
 
