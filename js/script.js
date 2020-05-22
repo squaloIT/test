@@ -45,14 +45,7 @@ window.onload = () => {
     }
 
     const checkIsCurrencySelected = () => {
-      let value = null;
-
-      const elements = document.getElementsByName('currency-radio-group');
-      elements.forEach(r => {
-        if (r.checked) {
-          value = r.value;
-        }
-      });
+      let value = getCurrency();
 
       return !!value;
     }
@@ -71,7 +64,7 @@ window.onload = () => {
       )
     }
 
-    const toggledElementsValid = document.getElementById("tbEmail").classList.contains('div--display-none') ?
+    const toggledElementsValid = isEmailInvisible() ?
       isTelValid() : isEmailValid()
 
     if (!toggledElementsValid)
@@ -105,16 +98,58 @@ window.onload = () => {
     }
   }
 
+  const isEmailInvisible = () => {
+    console.log(document.getElementById("tbEmail").parentElement)
+    return document.getElementById("tbEmail").parentElement.classList.contains('div--display-none')
+  }
+
+  const getCurrency = () => {
+    let value = null;
+
+    const elements = document.getElementsByName('currency-radio-group');
+    elements.forEach(r => {
+      if (r.checked) {
+        value = r.value;
+      }
+    });
+
+    return value;
+  }
+
   function sendDataIfValid() {
     showSpinner();
-    setTimeout(() => { //JUST TO SIMULATE SLOWER NETWORK REQUEST :)
-      if (checkFormValidity()) {
-        alert("SEND ")
-        hideSpinner();
+    if (checkFormValidity()) {
+      const data = {
+        currency: getCurrency(),
+        isNotification: document.getElementById("promo-notifications").checked
+      };
+
+      if (isEmailInvisible()) {
+        data.telephone = document.getElementById("tbTelephone").value
       } else {
-        hideSpinner();
+        data.email = document.getElementById("tbEmail").value
       }
-    }, 500)
+
+      setTimeout(() => { //JUST TO SIMULATE SLOWER NETWORK REQUEST FOR YOU TO SEE THE LOADER :)
+        fetch('https://test.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+        hideSpinner();
+      }, 500)
+    } else {
+      hideSpinner();
+    }
 
   }
 
