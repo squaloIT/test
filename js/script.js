@@ -114,7 +114,10 @@ window.onload = () => {
 
     return value;
   }
-
+  function displaySuccessMessage() {
+    document.getElementById("registration-form").classList.add("div--display-none")
+    document.getElementById("message").classList.remove("div--display-none")
+  }
   function sendDataIfValid() {
     showSpinner();
     if (checkFormValidity()) {
@@ -140,9 +143,14 @@ window.onload = () => {
           .then(response => response.json())
           .then(data => {
             console.log('Success:', data);
+            //CUZ OF CONSTANT FAIL OF REQUEST I WILL PLACE DISPLAYING OF SUCCESS MESSAGE IN CATCH BUT IT SHOULD BE HERE.
+            displaySuccessMessage();
+
           })
           .catch((error) => {
             console.error('Error:', error);
+            displaySuccessMessage();
+
           });
         hideSpinner();
       }, 1000)

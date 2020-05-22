@@ -31,10 +31,21 @@
     </div>
 
     <div class="row row--align-center">
-      <div class="col-md-6 col-sm-12">
+      <div class="col-md-6 col-sm-12 div--display-none" id='message'>
         <div class="card">
           <div class="card-content">
-            <span class="card-title">Registration<span id='type-of-registration'></span></span>
+            <span class="card-title">Registration successful!</span>
+            <p>Please procceed to login by clicking on a link bellow</p><br />
+            <div class="card-action">
+              <a href="#">Login page</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12" id='registration-form'>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Registration</span>
             <div class="row">
               <form>
                 <div class="input-field input-field--no-margin-top">
@@ -82,9 +93,6 @@
                 </div>
               </form>
             </div>
-            <!-- 
-            <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p> -->
           </div>
           <div class="card-action">
             <button class="btn waves-effect waves-light btn--blue disabled" type="button" id='btnRegister'>Register
