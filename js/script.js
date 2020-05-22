@@ -145,7 +145,7 @@ window.onload = () => {
             console.error('Error:', error);
           });
         hideSpinner();
-      }, 500)
+      }, 1000)
     } else {
       hideSpinner();
     }
