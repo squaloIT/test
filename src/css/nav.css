@@ -1,3 +1,4 @@
+/******************** NAV ******************/
 nav .brand-logo, icon-fingerprint {
   font-size:20px
 }
@@ -24,3 +25,5 @@ nav a:hover {
   padding:0px 15px;
   background-color: #7289da;
 }
+
+/******************** NAV ******************/

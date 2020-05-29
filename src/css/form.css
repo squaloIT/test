@@ -1,5 +1,6 @@
 
 /************** FORM *****************/
+
 .btn--blue, .btn--blue:hover {
   background-color: #7289da;
 }
@@ -48,3 +49,5 @@ input[type=tel]:not(.browser-default):focus:not([readonly]) {
 .helper-text.helper-text--display-none {
   display:none;
 }
+
+/************** FORM *****************/
