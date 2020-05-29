@@ -1,0 +1,10 @@
+/* 
+  Only writing !important because of the need to overwrite materialize css 
+  Never doing that with my own CSS
+*/
+* {
+  font-family: 'Fira Sans', sans-serif;
+}
+.container-fluid--no-padding{
+  padding: 0!important;
+}

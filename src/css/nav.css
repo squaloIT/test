@@ -1,0 +1,26 @@
+nav .brand-logo, icon-fingerprint {
+  font-size:20px
+}
+nav .nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav .nav-wrapper .nav-wrapper__logo {
+  width:20%;
+  height:100%
+}
+nav a:hover {
+  /* color: #ffab40; */
+  color: #f0e7c6;
+}
+.btn--blue:hover {
+  color:#e5d59c;
+}
+.column--no-pading {
+  padding:0!important;  
+}
+.column nav {
+  padding:0px 15px;
+  background-color: #7289da;
+}

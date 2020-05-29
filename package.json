@@ -1,20 +1,37 @@
 {
+  "name": "test-app-with-webpack",
+  "version": "1.0.0",
+  "description": "Citrus system apply job",
+  "main": "index.js",
   "scripts": {
+    "webpack-dev-server": "webpack-dev-server",
     "webpack": "webpack",
-    "prod": "yarn run webpack --env.mode production",
-    "dev": "yarn run webpack --env.mode development"
+    "debug": "node --inspect --inspect-brk ./dist/nundle.js",
+    "prod": "npm run webpack -- --env.mode production",
+    "dev": "npm run webpack -- --env.mode development --hot",
+    "prod:typescript": "npm run prod -- --env.presets typescript",
+    "prod:analyze": "npm run prod -- --env.presets analyze",
+    "prod:compress": "npm run prod -- --env.presets compress",
+    "prod:debug": "npm run debug -- --env.mode production",
+    "dev:debug": "npm run debug -- --env.mode development"
   },
   "dependencies": {
     "copy-webpack-plugin": "^6.0.1",
     "html-webpack-plugin": "^4.3.0",
     "mini-css-extract-plugin": "^0.9.0",
+    "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-merge": "^4.2.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/squaloIT/citrus-webpack.git"
+  },
   "type": "module",
   "devDependencies": {
     "css-loader": "^3.5.3",
-    "html-loader": "^1.1.0"
+    "html-loader": "^1.1.0",
+    "webpack-dev-server": "^3.11.0"
   }
 }
