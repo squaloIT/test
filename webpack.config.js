@@ -31,7 +31,7 @@ module.exports = ({ mode }) => {
       new MiniCssExtractPlugin(),
       new CopyWebpackPlugin({
         patterns: [
-          { from: './index.html', to: 'dest' }
+          { from: './index.html', to: './dest' }
         ],
         options: {
           concurrency: 100,

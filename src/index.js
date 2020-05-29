@@ -1,10 +1,8 @@
-const { getNavLinksAndAddEvent, toggleDisabledIfCheckedChb } = require('./js/helpers/dom');
-const { sendDataIfValid } = require('./js/helpers/api').sendDataIfValid
-import './../css/style.css';
+import { getNavLinksAndAddEvent, toggleButtonDisabledIfCheckedConditions } from './js/helpers/dom';
+import { sendDataIfValid } from './js/helpers/api';
 
 window.onload = () => {
   getNavLinksAndAddEvent();
-  toggleDisabledIfCheckedChb();
-
+  toggleButtonDisabledIfCheckedConditions();
   document.getElementById("btnRegister").addEventListener('click', sendDataIfValid);
 }

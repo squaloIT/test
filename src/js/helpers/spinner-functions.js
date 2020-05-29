@@ -22,7 +22,7 @@ const checkIsDisplayed = () => {
 
 
 
-module.exports = {
+export {
   showSpinner,
   hideSpinner
 }

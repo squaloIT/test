@@ -2,7 +2,7 @@ const isEmailInvisible = () => {
   return document.getElementById("tbEmail").parentElement.classList.contains('div--display-none')
 }
 
-const toggleDisabledIfCheckedChb = () => {
+const toggleButtonDisabledIfCheckedConditions = () => {
   document.getElementById("terms-and-conditions").addEventListener("change", function () {
     if (document.getElementById("terms-and-conditions").checked) {
       document.querySelector("button[type='button']").classList.remove("disabled")
@@ -34,8 +34,8 @@ const getNavLinksAndAddEvent = () => {
 }
 
 
-module.exports = {
+export {
   isEmailInvisible,
   getNavLinksAndAddEvent,
-  toggleDisabledIfCheckedChb
+  toggleButtonDisabledIfCheckedConditions
 }

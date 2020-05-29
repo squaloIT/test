@@ -1,7 +1,8 @@
-const { getCurrency, checkFormValidity } = require('./validations').getCurrency;
-const { isEmailInvisible } = require('./dom').isEmailInvisible;
+const { getCurrency, checkFormValidity } = require('./validations');
+import { isEmailInvisible } from './dom';
+import { hideSpinner, showSpinner } from './spinner-functions';
 
-function sendDataIfValid() {
+const sendDataIfValid = () => {
   showSpinner();
   if (checkFormValidity()) {
     const data = {
@@ -15,14 +16,14 @@ function sendDataIfValid() {
       data.email = document.getElementById("tbEmail").value
     }
 
-    send();
+    send(data);
   } else {
     hideSpinner();
   }
 
 }
 
-const send = () => {
+const send = (data) => {
   setTimeout(() => { //JUST TO SIMULATE SLOWER NETWORK REQUEST FOR YOU TO SEE THE LOADER :)
     registerUser(data)
       .then(response => response.json())
@@ -38,8 +39,9 @@ const send = () => {
 
       });
     hideSpinner();
-  }, 1000)
+  }, 1000);
 }
+
 const displaySuccessMessage = () => {
   document.getElementById("registration-form").classList.add("div--display-none")
   document.getElementById("message").classList.remove("div--display-none")
@@ -53,6 +55,4 @@ const registerUser = (data) => fetch('https://test.com', {
   body: JSON.stringify(data),
 });
 
-module.exports = {
-  sendDataIfValid
-}
+export { sendDataIfValid };

@@ -8,9 +8,11 @@
 .container-fluid--no-padding{
   padding: 0!important;
 }
+
 nav .brand-logo, icon-fingerprint {
   font-size:20px
 }
+
 nav .nav-wrapper {
   display: flex;
   justify-content: space-between;
